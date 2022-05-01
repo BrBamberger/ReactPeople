@@ -18,7 +18,7 @@ class PeopleTable extends React.Component {
        else {
             return( 
             <table className='table table-striped table-bordered'>
-                <thead className='table-dark'>
+                <thead>
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
