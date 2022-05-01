@@ -11,35 +11,40 @@ class PeopleTable extends React.Component {
         age: ''
     }
 
-    generateThead = () => {
+    generateTable = () => {
         if (this.state.people.length == 0) {
             return <h1>No people added yet! Add some people!</h1>
-        }
-        else {
-            return 
-            <thead className='table-dark'>
-                <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-            </tr>
-            </thead>
-        }
+       }
+       else {
+            return( 
+            <table className='table table-striped table-bordered'>
+                <thead className='table-dark'>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.people.map((p,k)=> <PersonRow person = {p} key ={k}/>)}
+                </tbody>
+         </table>)
+       }
     }
-    generateBody = () => {
-        <tbody>
-            {this.state.people.map((p,k)=> <PersonRow person = {p} key ={k}/>)}
-        </tbody>
-                
-            }
+   
     addPerson = () => {
-                const { people, first, last, age } = this.state;
-                const person = {  first, last, age };
+       
+        const { people, first, last, age } = this.state;
+                const person = {  first,
+                                 last, 
+                                 age 
+                                };
                 const copyPeople = [person, ...people];
                 this.setState({ people: copyPeople, first: '', last: '', age: '' });
                 console.log(people);
             }
     clearAll = () => {
+            const {people} = this.setState;
                 this.setState({ people: [] });
             }
 
@@ -61,20 +66,17 @@ class PeopleTable extends React.Component {
         render(){
             return (
                 <div className='container'>
-                    <PersonForm firstName={this.state.first}
-                                lastName = {this.state.last}
-                                age={this.state.age}
+                    <PersonForm 
+                        first={this.state.first}
+                        last = {this.state.last}
+                        age={this.state.age}
                         onClearClick = {this.clearAll}
                         onAddClick = {this.addPerson}
                         onTextFirstChange = {this.onTextFirstChange}
                         onTextLastChange = {this.onTextLastChange}
-                        onTextAgeChange = {this.onTextAgeChange} />
-        <table className='table table-striped table-bordered'>
+                        onTextAgeChange = {this.onTextAgeChange} />       
                        
-                            {this.generateThead()}
-                            {this.generateBody()}
-                       
-                    </table>
+                {this.generateTable()}                
                 </div>)
 
         }

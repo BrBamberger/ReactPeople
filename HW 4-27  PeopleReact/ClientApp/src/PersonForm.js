@@ -2,7 +2,7 @@
 
 class PersonForm extends React.Component {
     render() {
-        const { first, last, age, onAddClick, onTextFirstChange, onTextLastChange, onTextAgeChange, onClearClick } = this.props;
+        const { first, last, age, onTextFirstChange, onTextLastChange, onTextAgeChange, onAddClick, onClearClick } = this.props;
         return (
             <div className='container'>
             <div className='row jumbotron'>
@@ -20,10 +20,10 @@ class PersonForm extends React.Component {
 
                 <div className='col-md-2'>
                     <button className='btn btn-block btn-primary' onClick={onAddClick}>Add</button>
-                    </div>
-                    <div className='col-md-2'>
+                </div>
+                 <div className='col-md-2'>
                         <button className='btn btn-block btn-warning' onClick={onClearClick}>Clear All</button>
-                    </div>
+                 </div>
                 </div>
                 </div>
             )       
